@@ -16,5 +16,5 @@ CREATE TABLE movies.movies_basic (
 -- Alter the movies_basic table
 ALTER TABLE movies_basic
 ADD COLUMN box_office_gross FLOAT,
-RENAME COLUMN critics_rating TO critic_rating,
+RENAME COLUMN critic_rating TO critics_rating,
 CHANGE COLUMN director director VARCHAR(50);
