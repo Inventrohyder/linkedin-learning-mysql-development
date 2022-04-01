@@ -12,3 +12,9 @@ CREATE TABLE movies.movies_basic (
     critic_rating DECIMAL(2, 1) DEFAULT 0,
     PRIMARY KEY(id)
 );
+
+-- Alter the movies_basic table
+ALTER TABLE movies_basic
+ADD COLUMN box_office_gross FLOAT,
+RENAME COLUMN critic_rating TO critic_rating,
+CHANGE COLUMN director director VARCHAR(50);
