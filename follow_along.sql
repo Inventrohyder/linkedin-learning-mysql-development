@@ -71,3 +71,20 @@ FOREIGN KEY (title_id)
 REFERENCES titles(id);
 COMMIT;
 -- END CHALLENGE
+
+-- BEGIN CHALLENGE: Filter movies by score
+SELECT title AS 'Title:', 
+CASE
+    WHEN release_year < 2000 THEN '20th Century'
+    ELSE '21st Century'
+END AS 'Released:',
+    director AS 'Director:',
+CASE 
+    WHEN critics_rating <= 5 THEN 'Bad'
+    WHEN critics_rating <= 7 THEN 'Decent'
+    WHEN critics_rating <= 8.9 THEN 'Good'
+    ELSE 'Amazing'
+END As 'Reviews:'
+FROM movies_basic
+ORDER BY title DESC;
+-- END CHALLENGE
