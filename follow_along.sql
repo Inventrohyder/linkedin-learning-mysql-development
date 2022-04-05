@@ -63,10 +63,7 @@ CREATE TABLE critic_ratings (
     critics_rating DECIMAL(2, 1),
     PRIMARY KEY(id)
 );
-COMMIT;
-
-ALTER TABLE critic_ratings
-ADD CONSTRAINT title_id_fk
+COMMIT; ALTER TABLE critic_ratings ADD CONSTRAINT title_id_fk
 FOREIGN KEY (title_id)
 REFERENCES titles(id);
 COMMIT;
@@ -102,4 +99,27 @@ WHERE studio="Falstead Group" AND genre="Sci-Fi";
 
 DELETE FROM movies_basic
 WHERE studio="Lionel Brownstone" AND director="Garry Scott";
+-- END CHALLENGE
+
+-- BEGIN CHALLENGE: Find the best film
+CREATE TABLE posters (
+	id INT NOT NULL AUTO_INCREMENT,
+	titles_id INT,
+	filename VARCHAR(30),
+	resolution VARCHAR(10),
+	PRIMARY KEY(id),
+	CONSTRAINT posters_title_id_fk
+	FOREIGN KEY(titles_id)
+	REFERENCES titles(id)
+);
+
+SELECT titles.title, directors.dir_name, critic_ratings.critics_rating, posters.filename
+FROM titles
+INNER JOIN directors ON titles.director_id = directors.id
+INNER JOIN critic_ratings ON titles.id = critic_ratings.title_id
+LEFT OUTER JOIN posters ON titles.id = posters.titles_id
+WHERE critic_ratings.critics_rating = (
+	SELECT MAX(critic_ratings.critics_rating)
+	FROM critic_ratings
+);
 -- END CHALLENGE
