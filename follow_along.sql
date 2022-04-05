@@ -88,3 +88,18 @@ END As 'Reviews:'
 FROM movies_basic
 ORDER BY title DESC;
 -- END CHALLENGE
+
+-- BEGIN CHALLENGE: Clean up the movies
+INSERT INTO movies_basic
+(title, genre, release_year, director, studio, critics_rating)
+VALUES
+('Run for the Forest', 'Drama', 1946, 'Rence Pera', 'Lionel Brownstone', 7.3),
+('Luck of the Night', 'Drama', 1951, 'Rence Pera', 'Lionel Brownstone', 6.8),
+('Invader Glory', 'Adventure', 1953, 'Rence Pera', 'Studio 60', 5.5);
+
+UPDATE movies_basic SET genre="SF"
+WHERE studio="Falstead Group" AND genre="Sci-Fi";
+
+DELETE FROM movies_basic
+WHERE studio="Lionel Brownstone" AND director="Garry Scott";
+-- END CHALLENGE
